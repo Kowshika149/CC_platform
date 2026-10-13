@@ -1,6 +1,6 @@
 import { DUMMY_CREATORS } from '../data/creators';
 import { enrichCreatorData } from '../data/creatorDefaults';
-import type { ContentServiceId, Creator, User } from '../types';
+import type { ContentServiceId, Creator, CreatorStatus, User } from '../types';
 import { SERVICE_LABELS } from '../types';
 
 const USERS_STORAGE_KEY = 'cc_users';
@@ -25,7 +25,8 @@ function defaultRates(services: ContentServiceId[]) {
 /** Convert a registered app user into a marketplace creator profile. */
 export function userToCreatorProfile(user: User): Creator {
   const services = user.services?.length ? user.services : (['videography'] as ContentServiceId[]);
-  const status = user.creatorStatus || (user.onboardingComplete ? 'pending' : 'draft');
+  const status: CreatorStatus =
+    user.creatorStatus || (user.onboardingComplete ? 'under_review' : 'draft');
 
   const base: Creator = {
     id: user.id,
