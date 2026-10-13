@@ -10,7 +10,7 @@ npm install
 npm run dev
 ```
 
-**Preview URL:** http://localhost:5173
+**Preview URL:** https://cc-platform-igge.vercel.app/
 
 ## Demo Accounts
 
